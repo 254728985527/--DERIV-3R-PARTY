@@ -87,7 +87,7 @@ const SocketCache = (() => {
             if (!data.length) {
                 is_empty_data = true;
             }
-        } else if (typeof response_data === 'object') {
+        } else if (data && typeof data === 'object') {
             if (!Object.keys(data).length) {
                 is_empty_data = true;
             }
