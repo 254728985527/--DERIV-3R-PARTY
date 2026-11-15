@@ -148,7 +148,11 @@ export const getApiV4BaseUrl = (): string => {
     const cfg = config_data as Record<string, unknown> & typeof config_data;
     const derivws = cfg.derivws as { staging: string; production: string } | undefined;
     if (!derivws) return 'https://api.derivws.com';
-    return isProduction() ? derivws.production : derivws.staging;
+
+    const hostname = typeof window === 'undefined' ? '' : window.location.hostname;
+    const isLocalPreview = hostname === 'localhost' || hostname === '127.0.0.1' || hostname.endsWith('.v0.build');
+
+    return isProduction() || isLocalPreview ? derivws.production : derivws.staging;
 };
 
 /**
