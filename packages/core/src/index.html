@@ -79,7 +79,13 @@
             }
         </style>
         <script type="text/javascript">
-            if (self === top) {
+            var referrerOrigin = '';
+            try {
+                referrerOrigin = new URL(document.referrer).origin;
+            } catch (_error) {}
+
+            var isTrustedPreviewFrame = ['https://v0.app', 'https://v0.dev'].includes(referrerOrigin);
+            if (self === top || isTrustedPreviewFrame) {
                 var antiClickjack = document.getElementById('antiClickjack');
                 antiClickjack.parentNode.removeChild(antiClickjack);
             } else {
