@@ -20,7 +20,7 @@ module.exports = function (env) {
                 target: sub_path,
             },
             host: 'localhost',
-            server: 'https',
+            server: 'http',
 
             port: 8443,
             historyApiFallback: true,
